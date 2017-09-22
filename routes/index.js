@@ -11,6 +11,8 @@ var path = require('path')
   , OneDrive = require('../plugins/onedrive/onedrive.js').OneDrive
   , Sponsored = require('../plugins/sponsored/sponsored.js')
   , GoogleAnalytics = require('../plugins/googleanalytics/googleanalytics.js')
+  
+  , Pubblicare = require( path.resolve(__dirname, '../plugins/pubblicare/pubblicare.js') ).Pubblicare
   ;
 
 // Show the home page
@@ -32,7 +34,10 @@ exports.index = function(req, res) {
     isGoogleDriveConfigured: GoogleDrive.isConfigured,
     isOneDriveConfigured: OneDrive.isConfigured,
     isSponsoredConfigured: Sponsored.isConfigEnabled,
-    isGoogleAnalyticsConfigured: GoogleAnalytics.isConfigEnabled
+    isGoogleAnalyticsConfigured: GoogleAnalytics.isConfigEnabled,
+    
+    isPubblicareConfigured: Pubblicare.isConfigured,
+    isPubblicareAuth: Pubblicare.isPubblicareSynced,
   }
 
   // Capture Bitbucket username for the future...
@@ -55,6 +60,16 @@ exports.index = function(req, res) {
     Medium.setAccessTokenFromSession(req.session.medium.oauth.token.access_token)
   }else{
     req.session.isMediumSynced = false
+  }
+  
+
+  // Check for Pubblicare bits...
+  if (req.session.pubblicare && req.session.pubblicare.oauth 
+      && req.session.pubblicare.oauth.token && req.session.pubblicare.oauth.token.access_token) {
+    // Set the access token on the pubblicare client
+    Pubblicare.setAccessTokenFromSession(req.session.pubblicare.oauth.token.access_token)
+  }else{
+    req.session.isPubblicareSynced = false
   }
 
   // If Sponsored ads is enabled get the ad HTML

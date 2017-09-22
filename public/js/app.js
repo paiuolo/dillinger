@@ -83,6 +83,11 @@
   require('./file-import/choose-file.directive');
   require('./file-import/import-file.controller');
 
+  // Plugin: Pubblicare
+  require('./plugins/pubblicare/pubblicare.service');
+  require('./plugins/pubblicare/pubblicare-modal.controller');
+  require('./plugins/pubblicare/pubblicare.controller');
+
   // Configure Dependencies
   angular.module('Dillinger', [
     'diBase',
@@ -98,7 +103,9 @@
     'plugins.googledrive',
     'plugins.onedrive',
     'ui.bootstrap',
-    'diDebounce.service'
+    'diDebounce.service',
+
+    'plugins.pubblicare'
   ]);
 
   // Run!

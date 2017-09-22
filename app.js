@@ -28,6 +28,9 @@ const config = require('./config')()
   , medium = require('./plugins/medium/server.js')
   , googledrive = require('./plugins/googledrive/server.js')
   , onedrive = require('./plugins/onedrive/server.js')
+  
+  , pubblicare = require('./plugins/pubblicare/server.js')
+  
   , env = process.env.NODE_ENV || 'development';
 
 app.set('port', process.env.PORT || 8080)
@@ -118,6 +121,8 @@ app.use(github)
 app.use(medium)
 app.use(googledrive)
 app.use(onedrive)
+
+app.use(pubblicare)
 
 app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'))

@@ -76,3 +76,16 @@
     </a>
   </li>
   <% } %>
+
+  <% if (isPubblicareConfigured) { %>
+  <li ng-controller="Pubblicare as pubblicare">
+    <% if (isPubblicareAuth) { %>
+      <a class="save-to-pubblicare linked" ng-click="pubblicare.saveTo()">
+    <% } else { %>
+      <a href="/redirect/pubblicare" class="import-pubblicare unlinked">
+    <% } %>
+      <span>Pubblicare</span>
+      <span class="icon icon-link"><%- include ../icons/linked %></span>
+    </a>
+  </li>
+  <% } %>
