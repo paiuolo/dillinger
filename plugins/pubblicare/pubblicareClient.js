@@ -112,8 +112,8 @@ PubblicareClient.prototype.setAccessToken = function (accessToken) {
  */
 PubblicareClient.prototype.getAuthorizationUrl = function (state, redirectUrl, requestedScope) {
   return url.format({
-    protocol: 'https',
-    host: 'pubblicare.paiuolo.it',
+    protocol: 'http',
+    host: 'pubblicare.paiuolo.it:9000',
     pathname: '/m/oauth/authorize',
     query: {
       client_id: this._clientId,
@@ -344,8 +344,8 @@ PubblicareClient.prototype._enforce = function (options, requiredKeys) {
  */
 PubblicareClient.prototype._makeRequest = function (options, callback) {
   var requestParams = {
-    host: 'api.pubblicare.paiuolo.it',
-    port: 443,
+    host: 'pubblicare.paiuolo.it',
+    port: 9000,
     method: options.method,
     path: options.path
   }

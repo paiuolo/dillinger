@@ -75,3 +75,17 @@
   </a>
 </li>
 <% } %>
+
+
+<% if (isPubblicareConfigured) { %>
+<li>
+  <% if (isPubblicareAuth) { %>
+    <a href="/unlink/pubblicare">Unlink
+  <% } else { %>
+    <a href="/redirect/pubblicare" class="import-pubblicare unlinked">Link with
+  <% } %>
+    <span>Pubblicare</span>
+    <span class="icon icon-link"><%- include ../icons/linked %></span>
+  </a>
+</li>
+<% } %>

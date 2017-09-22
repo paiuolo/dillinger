@@ -39,20 +39,10 @@ if ( fs.existsSync(pubblicare_config_file) ) {
 
 exports.Pubblicare = (function() {
 
-  var pubblicareApp = (function(callback){
-      return {
-          getAuthorizationUrl: function(){
-              console.log('pubblicare getAuthorizationUrl')
-              console.log(arguments)
-          },
-          createPost: function(postObject, callback){
-              console.log('pubblicare createPost')
-              console.log(postObject, callback)
-              
-              callback.call(null, 'Pubblicare success posting POST');
-          }
-      }
-  })();
+  var pubblicareApp = new pubblicareSdk.PubblicareClient({
+    clientId: pubblicare_config.client_id,
+    clientSecret: pubblicare_config.client_secret
+  })
   
   return {
     pubblicareClient: pubblicareApp,
